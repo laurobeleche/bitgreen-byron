@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package vulcoind/vulcoin-qt
-for Debian-based Linux systems. If you compile vulcoind/vulcoin-qt yourself, there are some useful files here.
+This directory contains files used to package byrond/byron-qt
+for Debian-based Linux systems. If you compile byrond/byron-qt yourself, there are some useful files here.
 
-## vulcoin: URI support ##
+## byron: URI support ##
 
 
-vulcoin-qt.desktop  (Gnome / Open Desktop)
+byron-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install vulcoin-qt.desktop
+	sudo desktop-file-install byron-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your vulcoinqt binary to `/usr/bin`
-and the `../../share/pixmaps/vulcoin128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your byronqt binary to `/usr/bin`
+and the `../../share/pixmaps/byron128.png` to `/usr/share/pixmaps`
 
-vulcoin-qt.protocol (KDE)
+byron-qt.protocol (KDE)
 

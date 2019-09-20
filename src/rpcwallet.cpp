@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017-2019 The Vulcoin Core developers
+// Copyright (c) 2017-2019 The Byron Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -83,7 +83,7 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewaddress ( \"account\" )\n"
-            "\nReturns a new VLC address for receiving payments.\n"
+            "\nReturns a new BYRON address for receiving payments.\n"
             "If 'account' is specified (recommended), it is added to the address book \n"
             "so payments received with the address will be credited to 'account'.\n"
 
@@ -91,7 +91,7 @@ UniValue getnewaddress(const UniValue& params, bool fHelp)
             "1. \"account\"        (string, optional) The account name for the address to be linked to. if not provided, the default account \"\" is used. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"vlcaddress\"    (string) The new vlc address\n"
+            "\"byronaddress\"    (string) The new byron address\n"
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") + HelpExampleCli("getnewaddress", "\"\"") +
             HelpExampleCli("getnewaddress", "\"myaccount\"") + HelpExampleRpc("getnewaddress", "\"myaccount\""));
@@ -157,12 +157,12 @@ UniValue getaccountaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccountaddress \"account\"\n"
-            "\nReturns the current VLC address for receiving payments to this account.\n"
+            "\nReturns the current BYRON address for receiving payments to this account.\n"
             "\nArguments:\n"
             "1. \"account\"       (string, required) The account name for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
 
             "\nResult:\n"
-            "\"vlcaddress\"   (string) The account vlc address\n"
+            "\"byronaddress\"   (string) The account byron address\n"
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") + HelpExampleCli("getaccountaddress", "\"\"") +
             HelpExampleCli("getaccountaddress", "\"myaccount\"") + HelpExampleRpc("getaccountaddress", "\"myaccount\""));
@@ -184,7 +184,7 @@ UniValue getrawchangeaddress(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new VLC address, for receiving change.\n"
+            "\nReturns a new BYRON address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
 
             "\nResult:\n"
@@ -215,11 +215,11 @@ UniValue setaccount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "setaccount \"vlcaddress\" \"account\"\n"
+            "setaccount \"byronaddress\" \"account\"\n"
             "\nSets the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"vlcaddress\"  (string, required) The vlc address to be associated with an account.\n"
+            "1. \"byronaddress\"  (string, required) The byron address to be associated with an account.\n"
             "2. \"account\"         (string, required) The account to assign the address to.\n"
 
             "\nExamples:\n" +
@@ -229,7 +229,7 @@ UniValue setaccount(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
 
 
     string strAccount;
@@ -256,11 +256,11 @@ UniValue getaccount(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "getaccount \"vlcaddress\"\n"
+            "getaccount \"byronaddress\"\n"
             "\nReturns the account associated with the given address.\n"
 
             "\nArguments:\n"
-            "1. \"vlcaddress\"  (string, required) The vlc address for account lookup.\n"
+            "1. \"byronaddress\"  (string, required) The byron address for account lookup.\n"
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
 
@@ -271,7 +271,7 @@ UniValue getaccount(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
 
     string strAccount;
     map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
@@ -293,7 +293,7 @@ UniValue getaddressesbyaccount(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"vlcaddress\"  (string) a vlc address associated with the given account\n"
+            "  \"byronaddress\"  (string) a byron address associated with the given account\n"
             "  ,...\n"
             "]\n"
 
@@ -331,7 +331,7 @@ void SendMoney(const CTxDestination& address, CAmount nValue, CWalletTx& wtxNew,
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
 
-    // Parse VLC address
+    // Parse BYRON address
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
@@ -351,12 +351,12 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddress \"vlcaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"byronaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"vlcaddress\"  (string, required) The vlc address to send to.\n"
+            "1. \"byronaddress\"  (string, required) The byron address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in btc to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -376,7 +376,7 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -399,12 +399,12 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddressix \"vlcaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddressix \"byronaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() +
             "\nArguments:\n"
-            "1. \"vlcaddress\"  (string, required) The vlc address to send to.\n"
-            "2. \"amount\"      (numeric, required) The amount in vlc to send. eg 0.1\n"
+            "1. \"byronaddress\"  (string, required) The byron address to send to.\n"
+            "2. \"amount\"      (numeric, required) The amount in byron to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
@@ -423,7 +423,7 @@ UniValue sendtoaddressix(const UniValue& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -455,8 +455,8 @@ UniValue listaddressgroupings(const UniValue& params, bool fHelp)
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"vlcaddress\",     (string) The vlc address\n"
-            "      amount,                 (numeric) The amount in VLC\n"
+            "      \"byronaddress\",     (string) The byron address\n"
+            "      amount,                 (numeric) The amount in BYRON\n"
             "      \"account\"             (string, optional) The account\n"
             "    ]\n"
             "    ,...\n"
@@ -492,12 +492,12 @@ UniValue signmessage(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "signmessage \"vlcaddress\" \"message\"\n"
+            "signmessage \"byronaddress\" \"message\"\n"
             "\nSign a message with the private key of an address" +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
-            "1. \"vlcaddress\"  (string, required) The vlc address to use for the private key.\n"
+            "1. \"byronaddress\"  (string, required) The byron address to use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a signature of.\n"
 
             "\nResult:\n"
@@ -547,15 +547,15 @@ UniValue getreceivedbyaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw std::runtime_error(
-            "getreceivedbyaddress \"vlcaddress\" ( minconf )\n"
-            "\nReturns the total amount received by the given vlcaddress in transactions with at least minconf confirmations.\n"
+            "getreceivedbyaddress \"byronaddress\" ( minconf )\n"
+            "\nReturns the total amount received by the given byronaddress in transactions with at least minconf confirmations.\n"
 
             "\nArguments:\n"
-            "1. \"vlcaddress\"  (string, required) The vlc address for transactions.\n"
+            "1. \"byronaddress\"  (string, required) The byron address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount   (numeric) The total amount in VLC received at this address.\n"
+            "amount   (numeric) The total amount in BYRON received at this address.\n"
             "\nExamples:\n"
             "\nThe amount from transactions with at least 1 confirmation\n" +
             HelpExampleCli("getreceivedbyaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\"") +
@@ -568,10 +568,10 @@ UniValue getreceivedbyaddress(const UniValue& params, bool fHelp)
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
 
-    // vlc address
+    // byron address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
     CScript scriptPubKey = GetScriptForDestination(address.Get());
     if (!IsMine(*pwalletMain, scriptPubKey))
         throw JSONRPCError(RPC_WALLET_ERROR, "Address not found in wallet");
@@ -610,7 +610,7 @@ UniValue getreceivedbyaccount(const UniValue& params, bool fHelp)
             "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in VLC received for this account.\n"
+            "amount              (numeric) The total amount in BYRON received for this account.\n"
             "\nExamples:\n"
             "\nAmount received by the default account with at least 1 confirmation\n" +
             HelpExampleCli("getreceivedbyaccount", "\"\"") +
@@ -698,7 +698,7 @@ UniValue getbalance(const UniValue& params, bool fHelp)
             "3. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress')\n"
 
             "\nResult:\n"
-            "amount              (numeric) The total amount in VLC received for this account.\n"
+            "amount              (numeric) The total amount in BYRON received for this account.\n"
 
             "\nExamples:\n"
             "\nThe total amount in the server across all accounts\n" +
@@ -781,7 +781,7 @@ UniValue movecmd(const UniValue& params, bool fHelp)
             "\nArguments:\n"
             "1. \"fromaccount\"   (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
             "2. \"toaccount\"     (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
-            "3. amount            (numeric, required) Quantity of VLC to move between accounts.\n"
+            "3. amount            (numeric, required) Quantity of BYRON to move between accounts.\n"
             "4. minconf           (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"       (string, optional) An optional comment, stored in the wallet only.\n"
 
@@ -789,9 +789,9 @@ UniValue movecmd(const UniValue& params, bool fHelp)
             "true|false           (boolean) true if successful.\n"
 
             "\nExamples:\n"
-            "\nMove 0.01 VLC from the default account to the account named tabby\n" +
+            "\nMove 0.01 BYRON from the default account to the account named tabby\n" +
             HelpExampleCli("move", "\"\" \"tabby\" 0.01") +
-            "\nMove 0.01 VLC from timotei to akiko with a comment\n" +
+            "\nMove 0.01 BYRON from timotei to akiko with a comment\n" +
             HelpExampleCli("move", "\"timotei\" \"akiko\" 0.01 1 \"happy birthday!\"") +
             "\nAs a json rpc call\n" +
             HelpExampleRpc("move", "\"timotei\", \"akiko\", 0.01, 1, \"happy birthday!\""));
@@ -845,15 +845,15 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
-            "sendfrom \"fromaccount\" \"tovlcaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
-            "\nSent an amount from an account to a vlc address.\n"
+            "sendfrom \"fromaccount\" \"tobyronaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "\nSent an amount from an account to a byron address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
 
             "\nArguments:\n"
             "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
-            "2. \"tovlcaddress\"  (string, required) The vlc address to send funds to.\n"
-            "3. amount                (numeric, required) The amount in VLC. (transaction fee is added on top).\n"
+            "2. \"tobyronaddress\"  (string, required) The byron address to send funds to.\n"
+            "3. amount                (numeric, required) The amount in BYRON. (transaction fee is added on top).\n"
             "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
             "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
             "                                     This is not part of the transaction, just kept in your wallet.\n"
@@ -865,7 +865,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
             "\"transactionid\"        (string) The transaction id.\n"
 
             "\nExamples:\n"
-            "\nSend 0.01 VLC from the default account to the address, must have at least 1 confirmation\n" +
+            "\nSend 0.01 BYRON from the default account to the address, must have at least 1 confirmation\n" +
             HelpExampleCli("sendfrom", "\"\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01") +
             "\nSend 0.01 from the tabby account to the given address, funds must have at least 6 confirmations\n" +
             HelpExampleCli("sendfrom", "\"tabby\" \"DMJRSsuU9zfyrvxVaAEFQqK4MxZg6vgeS6\" 0.01 6 \"donation\" \"seans outpost\"") +
@@ -877,7 +877,7 @@ UniValue sendfrom(const UniValue& params, bool fHelp)
     string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
     CAmount nAmount = AmountFromValue(params[2]);
     int nMinDepth = 1;
     if (params.size() > 3)
@@ -914,7 +914,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
                                         "1. \"fromaccount\"         (string, required) The account to send the funds from, can be \"\" for the default account\n"
                                         "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
                                         "    {\n"
-                                        "      \"address\":amount   (numeric) The vlc address is the key, the numeric amount in vlc is the value\n"
+                                        "      \"address\":amount   (numeric) The byron address is the key, the numeric amount in byron is the value\n"
                                         "      ,...\n"
                                         "    }\n"
                                         "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -949,7 +949,7 @@ UniValue sendmany(const UniValue& params, bool fHelp)
     BOOST_FOREACH(const string& name_, keys) {
         CBitcoinAddress address(name_);
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Vulcoin address: ")+name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Byron address: ")+name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+name_);
@@ -991,20 +991,20 @@ UniValue addmultisigaddress(const UniValue& params, bool fHelp)
         throw runtime_error(
             "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-            "Each key is a VLC address or hex-encoded public key.\n"
+            "Each key is a BYRON address or hex-encoded public key.\n"
             "If 'account' is specified, assign address to that account.\n"
 
             "\nArguments:\n"
             "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-            "2. \"keysobject\"   (string, required) A json array of vlc addresses or hex-encoded public keys\n"
+            "2. \"keysobject\"   (string, required) A json array of byron addresses or hex-encoded public keys\n"
             "     [\n"
-            "       \"address\"  (string) vlc address or hex-encoded public key\n"
+            "       \"address\"  (string) byron address or hex-encoded public key\n"
             "       ...,\n"
             "     ]\n"
             "3. \"account\"      (string, optional) An account to assign the addresses to.\n"
 
             "\nResult:\n"
-            "\"vlcaddress\"  (string) A vlc address associated with the keys.\n"
+            "\"byronaddress\"  (string) A byron address associated with the keys.\n"
 
             "\nExamples:\n"
             "\nAdd a multisig address from 2 addresses\n" +
@@ -1176,7 +1176,7 @@ UniValue listreceivedbyaddress(const UniValue& params, bool fHelp)
             "    \"involvesWatchonly\" : \"true\",    (bool) Only returned if imported addresses were involved in transaction\n"
             "    \"address\" : \"receivingaddress\",  (string) The receiving address\n"
             "    \"account\" : \"accountname\",       (string) The account of the receiving address. The default account is \"\".\n"
-            "    \"amount\" : x.xxx,                  (numeric) The total amount in VLC received by the address\n"
+            "    \"amount\" : x.xxx,                  (numeric) The total amount in BYRON received by the address\n"
             "    \"confirmations\" : n                (numeric) The number of confirmations of the most recent transaction included\n"
             "    \"bcconfirmations\" : n              (numeric) The number of blockchain confirmations of the most recent transaction included\n"
             "  }\n"
@@ -1326,17 +1326,17 @@ UniValue listtransactions(const UniValue& params, bool fHelp)
             "  {\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. \n"
             "                                                It will be \"\" for the default account.\n"
-            "    \"address\":\"vlcaddress\",    (string) The vlc address of the transaction. Not present for \n"
+            "    \"address\":\"byronaddress\",    (string) The byron address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
             "                                                transaction id or block. 'send' and 'receive' transactions are \n"
             "                                                associated with an address, transaction id and block details\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in VLC. This is negative for the 'send' category, and for the\n"
+            "    \"amount\": x.xxx,          (numeric) The amount in BYRON. This is negative for the 'send' category, and for the\n"
             "                                         'move' category for moves outbound. It is positive for the 'receive' category,\n"
             "                                         and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in VLC. This is negative and only available for the \n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in BYRON. This is negative and only available for the \n"
             "                                         'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and \n"
             "                                         'receive' category of transactions.\n"
@@ -1518,12 +1518,12 @@ UniValue listsinceblock(const UniValue& params, bool fHelp)
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. Will be \"\" for the default account.\n"
-            "    \"address\":\"vlcaddress\",    (string) The vlc address of the transaction. Not present for move transactions (category = move).\n"
+            "    \"address\":\"byronaddress\",    (string) The byron address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
-            "    \"amount\": x.xxx,          (numeric) The amount in VLC. This is negative for the 'send' category, and for the 'move' category for moves \n"
+            "    \"amount\": x.xxx,          (numeric) The amount in BYRON. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"fee\": x.xxx,             (numeric) The amount of the fee in VLC. This is negative and only available for the 'send' category of transactions.\n"
+            "    \"fee\": x.xxx,             (numeric) The amount of the fee in BYRON. This is negative and only available for the 'send' category of transactions.\n"
             "    \"confirmations\": n,       (numeric) The number of confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"bcconfirmations\" : n,    (numeric) The number of blockchain confirmations for the transaction. Available for 'send' and 'receive' category of transactions.\n"
             "    \"blockhash\": \"hashvalue\",     (string) The block hash containing the transaction. Available for 'send' and 'receive' category of transactions.\n"
@@ -1601,7 +1601,7 @@ UniValue gettransaction(const UniValue& params, bool fHelp)
 
             "\nResult:\n"
             "{\n"
-            "  \"amount\" : x.xxx,        (numeric) The transaction amount in VLC\n"
+            "  \"amount\" : x.xxx,        (numeric) The transaction amount in BYRON\n"
             "  \"confirmations\" : n,     (numeric) The number of confirmations\n"
             "  \"bcconfirmations\" : n,   (numeric) The number of blockchain confirmations\n"
             "  \"blockhash\" : \"hash\",  (string) The block hash\n"
@@ -1613,9 +1613,9 @@ UniValue gettransaction(const UniValue& params, bool fHelp)
             "  \"details\" : [\n"
             "    {\n"
             "      \"account\" : \"accountname\",  (string) The account name involved in the transaction, can be \"\" for the default account.\n"
-            "      \"address\" : \"vlcaddress\",   (string) The vlc address involved in the transaction\n"
+            "      \"address\" : \"byronaddress\",   (string) The byron address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
-            "      \"amount\" : x.xxx                  (numeric) The amount in VLC\n"
+            "      \"amount\" : x.xxx                  (numeric) The amount in BYRON\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
             "    }\n"
             "    ,...\n"
@@ -1735,7 +1735,7 @@ UniValue walletpassphrase(const UniValue& params, bool fHelp)
         throw runtime_error(
             "walletpassphrase \"passphrase\" timeout ( stakingonly )\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
-            "This is needed prior to performing transactions related to private keys such as sending VLCs\n"
+            "This is needed prior to performing transactions related to private keys such as sending BYRONs\n"
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
             "2. timeout            (numeric, required) The time to keep the decryption key in seconds.\n"
@@ -1898,10 +1898,10 @@ UniValue encryptwallet(const UniValue& params, bool fHelp)
             "\nExamples:\n"
             "\nEncrypt you wallet\n" +
             HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
-            "\nNow set the passphrase to use the wallet, such as for signing or sending VLCs\n" +
+            "\nNow set the passphrase to use the wallet, such as for signing or sending BYRONs\n" +
             HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
             "\nNow we can so something like sign\n" +
-            HelpExampleCli("signmessage", "\"vlcaddress\" \"test message\"") +
+            HelpExampleCli("signmessage", "\"byronaddress\" \"test message\"") +
             "\nNow lock the wallet again by removing the passphrase\n" +
             HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n" +
@@ -1932,7 +1932,7 @@ UniValue encryptwallet(const UniValue& params, bool fHelp)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; vulcoin server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
+    return "wallet encrypted; byron server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
 }
 
 UniValue lockunspent(const UniValue& params, bool fHelp)
@@ -1942,7 +1942,7 @@ UniValue lockunspent(const UniValue& params, bool fHelp)
             "lockunspent unlock [{\"txid\":\"txid\",\"vout\":n},...]\n"
             "\nUpdates list of temporarily unspendable outputs.\n"
             "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
-            "A locked transaction output will not be chosen by automatic coin selection, when spending VLCs.\n"
+            "A locked transaction output will not be chosen by automatic coin selection, when spending BYRONs.\n"
             "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
             "is always cleared (by virtue of process exit) when a node stops or fails.\n"
             "Also see the listunspent call\n"
@@ -2102,7 +2102,7 @@ UniValue settxfee(const UniValue& params, bool fHelp)
             "\nSet the transaction fee per kB.\n"
 
             "\nArguments:\n"
-            "1. amount         (numeric, required) The transaction fee in VLC/kB rounded to the nearest 0.00000001\n"
+            "1. amount         (numeric, required) The transaction fee in BYRON/kB rounded to the nearest 0.00000001\n"
             "\nResult\n"
             "true|false        (boolean) Returns true if successful\n"
             "\nExamples:\n" +
@@ -2129,14 +2129,14 @@ UniValue getwalletinfo(const UniValue& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total VLC balance of the wallet\n"
-            "  \"unconfirmed_balance\": xxx, (numeric) the total unconfirmed balance of the wallet in VLC\n"
-            "  \"immature_balance\": xxxxxx, (numeric) the total immature balance of the wallet in VLC\n"
+            "  \"balance\": xxxxxxx,         (numeric) the total BYRON balance of the wallet\n"
+            "  \"unconfirmed_balance\": xxx, (numeric) the total unconfirmed balance of the wallet in BYRON\n"
+            "  \"immature_balance\": xxxxxx, (numeric) the total immature balance of the wallet in BYRON\n"
             "  \"txcount\": xxxxxxx,         (numeric) the total number of transactions in the wallet\n"
             "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
             "  \"unlocked_until\": ttt,      (numeric) the timestamp in seconds since epoch (midnight Jan 1 1970 GMT) that the wallet is unlocked for transfers, or 0 if the wallet is locked\n"
-            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee configuration, set in VLC/kB\n"
+            "  \"paytxfee\": x.xxxx,         (numeric) the transaction fee configuration, set in BYRON/kB\n"
             "}\n"
 
             "\nExamples:\n" +
@@ -2275,7 +2275,7 @@ UniValue autocombinerewards(const UniValue& params, bool fHelp)
     if (fHelp || params.size() < 1 || (fEnable && params.size() != 2) || params.size() > 2)
         throw runtime_error(
             "autocombinerewards enable ( threshold )\n"
-            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same VLC address\n"
+            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same BYRON address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
             "\nArguments:\n"
@@ -2484,7 +2484,7 @@ UniValue multisend(const UniValue& params, bool fHelp)
             "The MultiSend transaction is sent when the staked coins mature (100 confirmations)\n"
             "****************************************************************\n"
             "TO CREATE OR ADD TO THE MULTISEND VECTOR:\n"
-            "multisend <VLC Address> <percent>\n"
+            "multisend <BYRON Address> <percent>\n"
             "This will add a new address to the MultiSend vector\n"
             "Percent is a whole number 1 to 100.\n"
             "****************************************************************\n"
@@ -2503,7 +2503,7 @@ UniValue multisend(const UniValue& params, bool fHelp)
     string strAddress = params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Vulcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Byron address");
     if (boost::lexical_cast<int>(params[1].get_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())

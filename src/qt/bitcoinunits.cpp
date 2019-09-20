@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017-2017 The Vulcoin Core developers
+// Copyright (c) 2017-2017 The Byron Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,18 +20,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(VLC);
-    unitlist.append(mVLC);
-    unitlist.append(uVLC);
+    unitlist.append(BYRON);
+    unitlist.append(mBYRON);
+    unitlist.append(uBYRON);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case VLC:
-    case mVLC:
-    case uVLC:
+    case BYRON:
+    case mBYRON:
+    case uBYRON:
         return true;
     default:
         return false;
@@ -41,12 +41,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case VLC:
-        return QString("vlc");
-    case mVLC:
-        return QString("mvlc");
-    case uVLC:
-        return QString::fromUtf8("uvlc");
+    case BYRON:
+        return QString("byron");
+    case mBYRON:
+        return QString("mbyron");
+    case uBYRON:
+        return QString::fromUtf8("ubyron");
     default:
         return QString("???");
     }
@@ -56,23 +56,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case VLC:
-            return QString("VLC");
-        case mVLC:
-            return QString("mVLC");
-        case uVLC:
-            return QString::fromUtf8("μVLC");
+        case BYRON:
+            return QString("BYRON");
+        case mBYRON:
+            return QString("mBYRON");
+        case uBYRON:
+            return QString::fromUtf8("μBYRON");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case VLC:
-            return QString("tVLC");
-        case mVLC:
-            return QString("tmVLC");
-        case uVLC:
-            return QString::fromUtf8("tμVLC");
+        case BYRON:
+            return QString("tBYRON");
+        case mBYRON:
+            return QString("tmBYRON");
+        case uBYRON:
+            return QString::fromUtf8("tμBYRON");
         default:
             return QString("???");
         }
@@ -83,23 +83,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case VLC:
-            return QString("VLC");
-        case mVLC:
-            return QString("Milli-VLC (1 / 1" THIN_SP_UTF8 "000)");
-        case uVLC:
-            return QString("Micro-VLC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case BYRON:
+            return QString("BYRON");
+        case mBYRON:
+            return QString("Milli-BYRON (1 / 1" THIN_SP_UTF8 "000)");
+        case uBYRON:
+            return QString("Micro-BYRON (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case VLC:
-            return QString("TestVLCs");
-        case mVLC:
-            return QString("Milli-TestVLC (1 / 1" THIN_SP_UTF8 "000)");
-        case uVLC:
-            return QString("Micro-TestVLC (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case BYRON:
+            return QString("TestBYRONs");
+        case mBYRON:
+            return QString("Milli-TestBYRON (1 / 1" THIN_SP_UTF8 "000)");
+        case uBYRON:
+            return QString("Micro-TestBYRON (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -109,11 +109,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case VLC:
+    case BYRON:
         return 100000000;
-    case mVLC:
+    case mBYRON:
         return 100000;
-    case uVLC:
+    case uBYRON:
         return 100;
     default:
         return 100000000;
@@ -123,11 +123,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case VLC:
+    case BYRON:
         return 8;
-    case mVLC:
+    case mBYRON:
         return 5;
-    case uVLC:
+    case uBYRON:
         return 2;
     default:
         return 0;

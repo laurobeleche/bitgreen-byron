@@ -1,10 +1,10 @@
 Masternode Community Vote API
 =============================
 
-Vulcoin now supports full decentralized community vote system.
+Byron now supports full decentralized community vote system.
 
 Community Votes go through a series of stages:
-* prepare - create a special transaction that destroys coins in order to make a voting proposal (currently 25 VLC)
+* prepare - create a special transaction that destroys coins in order to make a voting proposal (currently 25 BYRON)
 * submit - propagate transaction to peers on network
 * voting - lobby for votes on your proposal
 

@@ -975,12 +975,12 @@ QDialog#HelpMessageDialog QScrollBar:vertical, QDialog#HelpMessageDialog QScroll
 	border:0;
 }
 
-/* About Vulcoin Dialog */
-QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Vulcoin Contents */
+/* About Byron Dialog */
+QDialog#AboutDialog QLabel#label, QDialog#AboutDialog QLabel#copyrightLabel, QDialog#AboutDialog QLabel#label_2 { /* About Byron Contents */
 	margin-left:10px;
 }
 
-QDialog#AboutDialog QLabel#label_2 { /* Margin for About Vulcoin text */
+QDialog#AboutDialog QLabel#label_2 { /* Margin for About Byron text */
 	margin-right:10px;
 }
 
@@ -1007,14 +1007,14 @@ QLabel#labelOverviewHeaderLeft {
 
 QLabel#labelProposalListHeaderRight {
 	qproperty-alignment: 'AlignVCenter | AlignRight';
-	background-image: url(':/images/vulcoin_logo_horizontal');
+	background-image: url(':/images/byron_logo_horizontal');
 	background-repeat: no-repeat;
 	height: 60px;
 }
 
 QLabel#labelOverviewHeaderRight {
 	qproperty-alignment: 'AlignVCenter | AlignRight';
-	background-image: url(':/images/vulcoin_logo_horizontal');
+	background-image: url(':/images/byron_logo_horizontal');
 	background-repeat: no-repeat;
 }
 
@@ -1084,7 +1084,7 @@ QWidget .QFrame#frameBalances .QLabel#labelTotalText, /* Total Balance Label */
 QWidget .QFrame#frameBalances .QLabel#labelPendingText, /* Pending Balance Label */
 QWidget .QFrame#frameBalances .QLabel#labelAvailableText, /* Available Balance Label */
 QWidget .QFrame#frameBalances .QLabel#labelLockedText, /* Locked Balance Label */
-QWidget .QFrame#frameBalances .QLabel#labelBalances { /* VLC Balances Header Label */
+QWidget .QFrame#frameBalances .QLabel#labelBalances { /* BYRON Balances Header Label */
 	qproperty-alignment: 'AlignVCenter | AlignLeft';
 	min-width: 160px;
 	color: #fff;
@@ -1093,11 +1093,11 @@ QWidget .QFrame#frameBalances .QLabel#labelBalances { /* VLC Balances Header Lab
 	font-size: 14px;
 }
 
-QWidget .QFrame#frameBalances .QLabel#labelBalances { /* VLC Balances Header Label */
+QWidget .QFrame#frameBalances .QLabel#labelBalances { /* BYRON Balances Header Label */
 	font-weight: bold;
 }
 
-QWidget .QFrame#frameBalances #lineBalances { /* VLC Balances Line separator */
+QWidget .QFrame#frameBalances #lineBalances { /* BYRON Balances Line separator */
 	background-color:#eea807;
 }
 

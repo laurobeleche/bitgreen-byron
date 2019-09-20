@@ -7,7 +7,7 @@
 #include "primitives/transaction.h"
 #include "main.h"
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <boost/test/unit_test.hpp>
 
@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     CAmount nSum = 0;
     for (int nHeight = 0; nHeight < 1; nHeight += 1) {
-        /* premine in block 1 (500,001 VLC) */
+        /* premine in block 1 (500,001 BYRON) */
         CAmount nSubsidy = GetBlockValue(nHeight);
         BOOST_CHECK(nSubsidy <= 500000 * COIN);
         nSum += nSubsidy;

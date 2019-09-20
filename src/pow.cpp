@@ -23,7 +23,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     if (Params().NetworkID() == CBaseChainParams::REGTEST)
         return pindexLast->nBits;
 
-    /* current difficulty formula, vlc - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+    /* current difficulty formula, byron - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
     const CBlockIndex* BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -40,11 +40,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
     if (pindexLast->nHeight > Params().LAST_POW_BLOCK()) {
         uint256 bnTargetLimit = (~uint256(0) >> 24);
-        int64_t nTargetSpacing = 10 * 60;
+        int64_t nTargetSpacing = 3 * 60;
         int64_t nTargetTimespan = 60 * 40;
-		
-		if (pindexLast->nHeight <= 7572)
-			nTargetSpacing = 60;
 
         int64_t nActualSpacing = 0;
         if (pindexLast->nHeight != 0)

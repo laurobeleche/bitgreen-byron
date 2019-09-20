@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven Vulcoin tests.
+Utilities to generate test vectors for the data-driven Byron tests.
 
 Usage:
 

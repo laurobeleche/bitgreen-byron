@@ -15,7 +15,7 @@
 #include "wallet_ismine.h"
 #endif
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <boost/assign/std/vector.hpp>
 #include <boost/foreach.hpp>

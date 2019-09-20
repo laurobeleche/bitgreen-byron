@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The Pivx Core developers, 2017-@COPYRIGHT_YEAR@ The Vulcoin Core developers</string>
+  <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@, Copyright © 2009-@COPYRIGHT_YEAR@ The Bitcoin Core developers, 2014-@COPYRIGHT_YEAR@ The Dash Core developers, 2015-@COPYRIGHT_YEAR@ The Pivx Core developers, 2017-@COPYRIGHT_YEAR@ The Byron Core developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>@CLIENT_VERSION_MAJOR@.@CLIENT_VERSION_MINOR@.@CLIENT_VERSION_REVISION@</string>
@@ -29,16 +29,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Vulcoin-Qt</string>
+  <string>Byron-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Vulcoin-Qt</string>
+  <string>Byron-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.savebitcoin.Vulcoin-Qt</string>
+  <string>io.savebitcoin.Byron-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,10 +46,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.savebitcoin.VulcoinPayment</string>
+      <string>io.savebitcoin.ByronPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>vulcoin</string>
+        <string>byron</string>
       </array>
     </dict>
   </array>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>io.savebitcoin.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Vulcoin payment request</string>
+      <string>Byron payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -68,10 +68,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-vulcoin-payment-request</string>
+        <string>application/x-byron-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>vulcoinpaymentrequest</string>
+          <string>byronpaymentrequest</string>
         </array>
       </dict>
     </dict>

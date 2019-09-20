@@ -8,7 +8,7 @@
 #include "script/standard.h"
 #include "uint256.h"
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <vector>
 

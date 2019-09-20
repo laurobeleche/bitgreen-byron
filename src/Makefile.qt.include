@@ -2,36 +2,36 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/vulcoin-qt
+bin_PROGRAMS += qt/byron-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# vulcoin qt core #
+# byron qt core #
 QT_TS = \
-  qt/locale/vulcoin_bg.ts \
-  qt/locale/vulcoin_ca.ts \
-  qt/locale/vulcoin_cs.ts \
-  qt/locale/vulcoin_da.ts \
-  qt/locale/vulcoin_de.ts \
-  qt/locale/vulcoin_en.ts \
-  qt/locale/vulcoin_en_US.ts \
-  qt/locale/vulcoin_es.ts \
-  qt/locale/vulcoin_fi.ts \
-  qt/locale/vulcoin_fr_FR.ts \
-  qt/locale/vulcoin_it.ts \
-  qt/locale/vulcoin_ja.ts \
-  qt/locale/vulcoin_ko_KR.ts \
-  qt/locale/vulcoin_nl.ts \
-  qt/locale/vulcoin_pl.ts \
-  qt/locale/vulcoin_pt.ts \
-  qt/locale/vulcoin_pt_BR.ts \
-  qt/locale/vulcoin_ro_RO.ts \
-  qt/locale/vulcoin_ru.ts \
-  qt/locale/vulcoin_sk.ts \
-  qt/locale/vulcoin_sv.ts \
-  qt/locale/vulcoin_tr.ts \
-  qt/locale/vulcoin_uk.ts \
-  qt/locale/vulcoin_zh_CN.ts \
-  qt/locale/vulcoin_zh_TW.ts
+  qt/locale/byron_bg.ts \
+  qt/locale/byron_ca.ts \
+  qt/locale/byron_cs.ts \
+  qt/locale/byron_da.ts \
+  qt/locale/byron_de.ts \
+  qt/locale/byron_en.ts \
+  qt/locale/byron_en_US.ts \
+  qt/locale/byron_es.ts \
+  qt/locale/byron_fi.ts \
+  qt/locale/byron_fr_FR.ts \
+  qt/locale/byron_it.ts \
+  qt/locale/byron_ja.ts \
+  qt/locale/byron_ko_KR.ts \
+  qt/locale/byron_nl.ts \
+  qt/locale/byron_pl.ts \
+  qt/locale/byron_pt.ts \
+  qt/locale/byron_pt_BR.ts \
+  qt/locale/byron_ro_RO.ts \
+  qt/locale/byron_ru.ts \
+  qt/locale/byron_sk.ts \
+  qt/locale/byron_sv.ts \
+  qt/locale/byron_tr.ts \
+  qt/locale/byron_uk.ts \
+  qt/locale/byron_zh_CN.ts \
+  qt/locale/byron_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -118,16 +118,16 @@ BITCOIN_MM = \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/vulcoin.moc \
+  qt/byron.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_vulcoin.cpp
-QT_QRC = qt/vulcoin.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_vulcoin_locale.cpp
-QT_QRC_LOCALE = qt/vulcoin_locale.qrc
+QT_QRC_CPP = qt/qrc_byron.cpp
+QT_QRC = qt/byron.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_byron_locale.cpp
+QT_QRC_LOCALE = qt/byron_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -260,12 +260,12 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_vlc.png \
-  qt/res/icons/unit_mvlc.png \
-  qt/res/icons/unit_uvlc.png \
-  qt/res/icons/unit_tvlc.png \
-  qt/res/icons/unit_tmvlc.png \
-  qt/res/icons/unit_tuvlc.png \
+  qt/res/icons/unit_byron.png \
+  qt/res/icons/unit_mbyron.png \
+  qt/res/icons/unit_ubyron.png \
+  qt/res/icons/unit_tbyron.png \
+  qt/res/icons/unit_tmbyron.png \
+  qt/res/icons/unit_tubyron.png \
   qt/res/icons/proposal.png \
   qt/res/icons/proposal_active.png
 
@@ -346,7 +346,7 @@ BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
 endif
 
 RES_IMAGES = \
-  qt/res/images/vulcoin_logo_horizontal.png \
+  qt/res/images/byron_logo_horizontal.png \
   qt/res/images/about.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
@@ -364,7 +364,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/vulcoin-qt-res.rc
+BITCOIN_RC = qt/res/byron-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -386,71 +386,71 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_vulcoin_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_byron_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# vulcoin-qt binary #
-qt_vulcoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# byron-qt binary #
+qt_byron_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_vulcoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_byron_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_vulcoin_qt_SOURCES = qt/vulcoin.cpp
+qt_byron_qt_SOURCES = qt/byron.cpp
 if TARGET_DARWIN
-  qt_vulcoin_qt_SOURCES += $(BITCOIN_MM)
+  qt_byron_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_vulcoin_qt_SOURCES += $(BITCOIN_RC)
+  qt_byron_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_vulcoin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_byron_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_vulcoin_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+qt_byron_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_vulcoin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_byron_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_vulcoin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_byron_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_vulcoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_vulcoin_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+qt_byron_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_byron_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/vulcoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+$(srcdir)/qt/byronstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/vulcoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/vulcoin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: $(srcdir)/qt/byronstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/byron.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/vulcoin_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/byron_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name vulcoin_locale $(@D)/temp_$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name byron_locale $(@D)/temp_$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name vulcoin $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name byron $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_vulcoin_locale.qrc
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_byron_locale.qrc
 
 CLEANFILES += $(CLEAN_QT)
 
-vulcoin_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_vulcoin_qt_OBJECTS) qt/vulcoin-qt$(EXEEXT) $(LIBBITCOINQT)
+byron_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_byron_qt_OBJECTS) qt/byron-qt$(EXEEXT) $(LIBBITCOINQT)
 
-vulcoin_qt : qt/vulcoin-qt$(EXEEXT)
+byron_qt : qt/byron-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

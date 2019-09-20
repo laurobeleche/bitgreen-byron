@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/vulcoin-config.h"
+#include "config/byron-config.h"
 #endif
 
 #ifdef WIN32

@@ -5,12 +5,12 @@
 #include "random.h"
 #include "scheduler.h"
 #if defined(HAVE_CONFIG_H)
-#include "config/vulcoin-config.h"
+#include "config/byron-config.h"
 #else
 #define HAVE_WORKING_BOOST_SLEEP_FOR
 #endif
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <boost/bind.hpp>
 #include <boost/random/mersenne_twister.hpp>

@@ -29,9 +29,9 @@ SendCoinsEntry::SendCoinsEntry(QWidget* parent) : QStackedWidget(parent),
 #endif
     ui->addAsLabel->setPlaceholderText(tr("Enter a label for this address to add it to your address book"));
 
-    // normal vlc address field
+    // normal byron address field
     GUIUtil::setupAddressWidget(ui->payTo, this);
-    // just a label for displaying vlc address(es)
+    // just a label for displaying byron address(es)
     ui->payTo_is->setFont(GUIUtil::bitcoinAddressFont());
 
     // Connect signals
@@ -97,7 +97,7 @@ void SendCoinsEntry::clear()
     ui->memoTextLabel_s->clear();
     ui->payAmount_s->clear();
 
-    // update the display unit, to not use the default ("VLC")
+    // update the display unit, to not use the default ("BYRON")
     updateDisplayUnit();
 }
 

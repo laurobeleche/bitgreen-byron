@@ -1,21 +1,21 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-define(_CLIENT_VERSION_MAJOR, 2)
+define(_CLIENT_VERSION_MAJOR, 1)
 define(_CLIENT_VERSION_MINOR, 0)
-define(_CLIENT_VERSION_REVISION, 2)
+define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2019)
-AC_INIT([Vulcoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[www.vlc.org],[vulcoin])
+AC_INIT([Byron Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[www.byron.org],[byron])
 AC_CONFIG_SRCDIR([src/main.cpp])
-AC_CONFIG_HEADERS([src/config/vulcoin-config.h])
+AC_CONFIG_HEADERS([src/config/byron-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=vulcoind
-BITCOIN_GUI_NAME=vulcoin-qt
-BITCOIN_CLI_NAME=vulcoin-cli
-BITCOIN_TX_NAME=vulcoin-tx
+BITCOIN_DAEMON_NAME=byrond
+BITCOIN_GUI_NAME=byron-qt
+BITCOIN_CLI_NAME=byron-cli
+BITCOIN_TX_NAME=byron-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -25,9 +25,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef VLC_CONFIG_H])
-AH_TOP([#define VLC_CONFIG_H])
-AH_BOTTOM([#endif //VLC_CONFIG_H])
+AH_TOP([#ifndef BYRON_CONFIG_H])
+AH_TOP([#define BYRON_CONFIG_H])
+AH_BOTTOM([#endif //BYRON_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -394,7 +394,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build vulcoin-cli vulcoin-tx (default=yes)])],
+  [build byron-cli byron-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -406,7 +406,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build vulcoind daemon (default=yes)])],
+  [build byrond daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -620,7 +620,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to vulcoin-config.h, but
+# The following macro will add the necessary defines to byron-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -1149,11 +1149,11 @@ AC_SUBST(UNIVALUE_LIBS)
 
 BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build vulcoind])
+AC_MSG_CHECKING([whether to build byrond])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (vulcoin-cli vulcoin-tx)])
+AC_MSG_CHECKING([whether to build utils (byron-cli byron-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 
@@ -1254,7 +1254,7 @@ if test x$bitcoin_enable_qt != xno; then
     AC_MSG_WARN("xgettext is required to update qt translations")
   fi
 
-  AC_MSG_CHECKING([whether to build test_vulcoin-qt])
+  AC_MSG_CHECKING([whether to build test_byron-qt])
   if test x$use_gui_tests$bitcoin_enable_qt_test = xyesyes; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
@@ -1265,7 +1265,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
 
-AC_MSG_CHECKING([whether to build test_vulcoin])
+AC_MSG_CHECKING([whether to build test_byron])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"

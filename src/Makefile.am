@@ -65,15 +65,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += vulcoind
+  bin_PROGRAMS += byrond
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += vulcoin-cli vulcoin-tx
+  bin_PROGRAMS += byron-cli byron-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# vulcoin core #
+# byron core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -177,7 +177,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between vulcoind and vulcoin-qt
+# server: shared between byrond and byron-qt
 libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
@@ -224,7 +224,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between vulcoind and vulcoin-qt, but only linked
+# wallet: shared between byrond and byron-qt, but only linked
 # when wallet enabled
 libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -286,7 +286,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_skein.h \
   crypto/sph_types.h
 
-# common: shared between vulcoind, and vulcoin-qt and non-server tools
+# common: shared between byrond, and byron-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
@@ -345,7 +345,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between vulcoin-cli and vulcoin-qt
+# cli: shared between byron-cli and byron-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -355,16 +355,16 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# vulcoind binary #
-vulcoind_SOURCES = vulcoind.cpp
-vulcoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-vulcoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-vulcoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# byrond binary #
+byrond_SOURCES = byrond.cpp
+byrond_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+byrond_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+byrond_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-vulcoind_SOURCES += vulcoind-res.rc
+byrond_SOURCES += byrond-res.rc
 endif
-vulcoind_LDADD = \
+byrond_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -377,45 +377,45 @@ vulcoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-vulcoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+byrond_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# vulcoin-cli binary #
-vulcoin_cli_SOURCES = vulcoin-cli.cpp
-vulcoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-vulcoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-vulcoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# byron-cli binary #
+byron_cli_SOURCES = byron-cli.cpp
+byron_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+byron_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+byron_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-vulcoind_SOURCES += vulcoind-res.rc
+byrond_SOURCES += byrond-res.rc
 endif
 
-vulcoin_cli_LDADD = \
+byron_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-vulcoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+byron_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# vulcoin-tx binary #
-vulcoin_tx_SOURCES = vulcoin-tx.cpp
-vulcoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-vulcoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-vulcoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# byron-tx binary #
+byron_tx_SOURCES = byron-tx.cpp
+byron_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+byron_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+byron_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-vulcoin_tx_SOURCES += vulcoin-tx-res.rc
+byron_tx_SOURCES += byron-tx-res.rc
 endif
 
-vulcoin_tx_LDADD = \
+byron_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-vulcoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+byron_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
@@ -464,12 +464,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST =
 
 
-config/vulcoin-config.h: config/stamp-h1
+config/byron-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/vulcoin-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/byron-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/vulcoin-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/vulcoin-config.h.in
+$(top_srcdir)/$(subdir)/config/byron-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/byron-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

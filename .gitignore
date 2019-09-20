@@ -7,12 +7,12 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/vulcoin
-src/vulcoind
-src/vulcoin-cli
-src/vulcoin-tx
-src/test/test_vulcoin
-src/qt/test/test_vulcoin-qt
+src/byron
+src/byrond
+src/byron-cli
+src/byron-tx
+src/test/test_byron
+src/qt/test/test_byron-qt
 
 # autoreconf
 Makefile.in
@@ -38,8 +38,8 @@ confdefs.h
 conftest.cpp
 conftest.err
 libtool
-src/config/vulcoin-config.h
-src/config/vulcoin-config.h.in
+src/config/byron-config.h
+src/config/byron-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -64,7 +64,7 @@ src/qt/test/moc*.cpp
 *.pyc
 *.o
 *.o-*
-.vulcoin
+.byron
 *.a
 *.pb.cc
 *.pb.h
@@ -84,12 +84,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-vulcoin-qt
-Vulcoin-Qt.app
+byron-qt
+Byron-Qt.app
 
 # Unit-tests
 Makefile.test
-vulcoin-qt_test
+byron-qt_test
 src/test/buildenv.py
 
 # Resources cpp
@@ -105,7 +105,7 @@ build
 #lcov
 *.gcno
 /*.info
-test_vulcoin.coverage/
+test_byron.coverage/
 total.coverage/
 coverage_percent.txt
 

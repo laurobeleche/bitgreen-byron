@@ -18,7 +18,7 @@
 #include "script/bitcoinconsensus.h"
 #endif
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <fstream>
 #include <stdint.h>

@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: vulcoind.service
-Upstart: vulcoind.conf
-OpenRC:  vulcoind.openrc
-         vulcoind.openrcconf
-CentOS:  vulcoind.init
-macOS:    io.savebitcoin.vulcoind.plist
+SystemD: byrond.service
+Upstart: byrond.conf
+OpenRC:  byrond.openrc
+         byrond.openrcconf
+CentOS:  byrond.init
+macOS:    io.savebitcoin.byrond.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

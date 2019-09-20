@@ -1,0 +1,26 @@
+# /etc/conf.d/byrond: config file for /etc/init.d/byrond
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/byron/byron.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/byrond"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/byrond.pid"
+
+# Where to write byrond data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/byrond"
+
+# User and group to own byrond process
+#BITCOIND_USER="byron"
+#BITCOIND_GROUP="byron"
+
+# Path to byrond executable
+#BITCOIND_BIN="/usr/bin/byrond"
+
+# Nice value to run byrond under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

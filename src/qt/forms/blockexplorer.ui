@@ -168,7 +168,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../vulcoin.qrc"/>
+  <include location="../byron.qrc"/>
  </resources>
  <connections/>
 </ui>

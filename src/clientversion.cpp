@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both vulcoind and vulcoin-qt, to make it harder for attackers to
+ * for both byrond and byron-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Vulcoin Core");
+const std::string CLIENT_NAME("Byron Core");
 
 /**
  * Client version number

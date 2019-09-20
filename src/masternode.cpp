@@ -1,6 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017-2019 The Vulcoin Core developers
+// Copyright (c) 2017-2019 The Byron Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -544,8 +544,8 @@ bool CMasternodeBroadcast::CheckAndUpdate(int& nDos)
     }
 
     // if (Params().NetworkID() == CBaseChainParams::MAIN) {
-    //     if (addr.GetPort() != 22300) return false;
-    // } else if (addr.GetPort() == 22300)
+    //     if (addr.GetPort() != 27215) return false;
+    // } else if (addr.GetPort() == 27215)
     //     return false;
 
     //search existing Masternode list, this is where we update existing Masternodes with new mnb broadcasts
@@ -633,7 +633,7 @@ bool CMasternodeBroadcast::CheckInputsAndAdd(int& nDoS)
     }
 
     // verify that sig time is legit in past
-    // should be at least not earlier than block when VLC collateral tx got MASTERNODE_MIN_CONFIRMATIONS
+    // should be at least not earlier than block when BYRON collateral tx got MASTERNODE_MIN_CONFIRMATIONS
     uint256 hashBlock = 0;
     CTransaction tx2;
     GetTransaction(vin.prevout.hash, tx2, hashBlock, true);

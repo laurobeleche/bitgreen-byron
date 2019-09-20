@@ -15,7 +15,7 @@
 #include "serialize.h"
 #include "util.h"
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <stdint.h>
 

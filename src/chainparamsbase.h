@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between vulcoin-cli and vulcoind)
- * of a given instance of the Vulcoin system.
+ * CBaseChainParams defines the base parameters (shared between byron-cli and byrond)
+ * of a given instance of the Byron system.
  */
 class CBaseChainParams
 {

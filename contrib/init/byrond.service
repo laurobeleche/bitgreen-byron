@@ -1,0 +1,26 @@
+[Unit]
+Description=Byron's distributed currency daemon
+After=network.target
+
+[Service]
+User=byron
+Group=byron
+
+Type=forking
+PIDFile=/var/lib/byrond/byrond.pid
+
+ExecStart=/usr/bin/byrond -daemon -pid=/var/lib/byrond/byrond.pid \
+          -conf=/etc/byron/byron.conf -datadir=/var/lib/byrond
+
+ExecStop=-/usr/bin/byron-cli -conf=/etc/byron/byron.conf \
+         -datadir=/var/lib/byrond stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

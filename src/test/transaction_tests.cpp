@@ -13,7 +13,7 @@
 #include "script/script_error.h"
 #include "core_io.h"
 
-#include "test/test_vulcoin.h"
+#include "test/test_byron.h"
 
 #include <map>
 #include <string>

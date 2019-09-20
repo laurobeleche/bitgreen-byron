@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017-2019 The Vulcoin Core developers
+// Copyright (c) 2017-2019 The Byron Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,7 +49,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "Vulcoin cannot be compiled without assertions."
+#error "Byron cannot be compiled without assertions."
 #endif
 
 /**
@@ -75,10 +75,10 @@ bool fCheckBlockIndex = false;
 unsigned int nCoinCacheSize = 5000;
 bool fAlerts = DEFAULT_ALERTS;
 
-unsigned int nStakeMinAge = 6 * 60 * 60;
+unsigned int nStakeMinAge = 2 * 60 * 60;
 int64_t nReserveBalance = 0;
 
-/** Fees smaller than this (in uvlc) are considered zero fee (for relaying and mining)
+/** Fees smaller than this (in ubyron) are considered zero fee (for relaying and mining)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -1507,9 +1507,9 @@ int64_t GetBlockValue(int nHeight)
     }
 
     if (nHeight < Params().LAST_POW_BLOCK())
-        nSubsidy = 45000 * COIN;
+        nSubsidy = 12500 * COIN;
     else
-        nSubsidy = 18 * COIN;
+        nSubsidy = 14 * COIN;
 
     // Check if we reached the coin max supply.
     int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
@@ -1532,7 +1532,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         return 0;
 
     // Check if we reached coin supply
-    ret = blockValue * 0.80; // 80% of block reward
+    ret = blockValue * 0.95; // 95% of block reward
 
     return ret;
 }
@@ -1922,7 +1922,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("vulcoin-scriptch");
+    RenameThread("byron-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3008,7 +3008,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // VLC
+        // BYRON
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
