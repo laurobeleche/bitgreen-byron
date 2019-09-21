@@ -162,7 +162,7 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 200014;
 		
-		MineGenesis(genesis, bnProofOfWorkLimit);
+		//MineGenesis(genesis, bnProofOfWorkLimit);
 
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256S("0x0000046a0d44551528c3a82e99ebd00e163efc0668b85ebe34d9d5effc7b05d9"));
@@ -175,7 +175,7 @@ public:
 		//vSeeds.push_back(CDNSSeedData("45.32.8.155", "45.32.8.155"));
 
         // Byron addresses start with 'V'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 35);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 26);
         // Byron script addresses start with '3'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 6);
         // Byron private keys start with 'K'

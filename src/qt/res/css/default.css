@@ -1,6 +1,6 @@
 /****************************************************************************************/
 /* Global color codes:                                                                  */
-/* dark-red:        #f22335                                                             */
+/* dark-red:        #ff5968                                                             */
 /* transparent-red: #f5e6e7 (for inactive backgrounds)                                  */
 /*                                                                                      */
 /* light-red1:      #cf2332 (main red for white backgrounds)                            */
@@ -69,14 +69,14 @@ QMenu::item:selected {
 }
 
 QToolBar {
-	background-color: #ffbf00;
+	background-color: #ff0016;
 	border: 0px solid #fff;
 	padding: 0;
 	margin: 0;
 }
 
 QToolBar > QToolButton {
-	background-color:#ffbf00;
+	background-color:#ff0016;
 	border:0px solid #333;
 	selection-background-color:transparent;
 	min-height: 2.5em;
@@ -84,20 +84,20 @@ QToolBar > QToolButton {
 	font-weight: bold;
 	font-size: 13px;
 	color: #000;
-	border-bottom: 3px solid #ffd559;
+	border-bottom: 3px solid #ff5968;
 }
 
 QToolBar > QToolButton:checked {
-	background-color: #ffe900;
+	background-color: #ff2f00;
 	color: #000;
-    border-bottom: 3px solid #ffbf00;
+    border-bottom: 3px solid #ff0016;
 	font-weight:bold;
 }
 
 QToolBar > QToolButton:hover {
-	background-color: #ffbf00;
+	background-color: #ff0016;
 	color: #000;
-	border-bottom: 3px solid #ffbf00;
+	border-bottom: 3px solid #ff0016;
 }
 
 QMessageBox {
@@ -1216,13 +1216,17 @@ QDialog#SendCoinsDialog .QScrollArea#scrollArea .QWidget#scrollAreaWidgetContent
 }
 
 QDialog#SendCoinsDialog .QCheckBox#checkSwiftTX { /* SwiftTX Checkbox */
-	color:#616161;
+	color:#FFFFFF;
 	font-weight:bold;
 	border-radius:5px;
 	padding-top:20px;
 	padding-bottom:18px;
 	margin-left:10px;
 	margin-right:20px;
+}
+
+QDialog#SendCoinsDialog .QCheckBox#checkSwiftTX {
+	color: #f5e6e7;
 }
 
 /* This QLabel uses name = "label" which conflicts with Address Book -> New Address */
@@ -1476,7 +1480,7 @@ QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton:pressed {
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame .QLabel#label_6 { /* Requested Payments History Label */
-	color:#f22335;
+	color:#FFF;
 	font-weight:bold;
 	font-size:14px;
 }
