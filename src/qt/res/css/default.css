@@ -1,14 +1,14 @@
 /****************************************************************************************/
 /* Global color codes:                                                                  */
-/* dark-green:        #eea807                                                           */
-/* transparent-green: #e9e7ef (for inactive backgrounds)                                */
+/* dark-red:        #f22335                                                             */
+/* transparent-red: #f5e6e7 (for inactive backgrounds)                                  */
 /*                                                                                      */
-/* light-green1:      #d19724 (main green for white backgrounds)                        */
-/* light-green2:      #a36e0a (sligtly darker for gradients)                            */
+/* light-red1:      #cf2332 (main red for white backgrounds)                            */
+/* light-red2:      #a10a17 (sligtly darker for gradients)                              */
 /*                                                                                      */
-/* medium-green1:     #a36e0a (on hover)                                                */
-/* medium-green1:     #624100 (main green for dark backgrounds)                         */
-/* medium-green2:     #004000 (sligtly darker for gradients)                            */
+/* medium-red1:     #a10a17 (on hover)                                                  */
+/* medium-red1:     #610109 (main red for dark backgrounds)                             */
+/* medium-red2:     #400000 (sligtly darker for gradients)                              */
 /*                                                                                      */
 /* background:         #f8f6f6                                                          */
 /* input fields:       #e7e7e7                                                          */
@@ -134,7 +134,7 @@ QTabWidget::pane {
 }
 
 QTabBar {
-	background-color:#eea807;
+	background-color:#f22335;
 	color:#333;
 }
 
@@ -143,7 +143,7 @@ QTabBar::tab:hover:!selected {
 }
 
 QWidget {
-	selection-background-color:#eea807; /* Object highlight color */
+	selection-background-color:#f22335; /* Object highlight color */
 	selection-color:#fff;
 	outline:0; /* Remove Annoying Focus Rectangle */
 }
@@ -228,7 +228,7 @@ QLabel { /* Base Text Size & Color */
 
 QPushButton{ /* Global Button Style */
 
-	background-color: #eea807;
+	background-color: #f22335;
 	border: 0;
 	color:#333;
 	font-size:12px;
@@ -291,7 +291,7 @@ QComboBox:checked {
 }
 
 QComboBox:editable {
-	background:#eea807;
+	background:#f22335;
 	color:#616161;
 	border:0px solid transparent;
 }
@@ -403,7 +403,7 @@ QHeaderView { /* Table Header */
 
 QHeaderView::section { /* Table Header Sections */
 	qproperty-alignment:center;
-	background-color: #eea807;
+	background-color: #f22335;
 	color:#333;
 	min-height:25px;
 	font-weight:bold;
@@ -449,7 +449,7 @@ QTableView::item { /* Table Item */
 }
 
 QTableView::item:selected { /* Table Item Selected */
-	background-color:#eea807;
+	background-color:#f22335;
 	color:#fff;
 }
 
@@ -486,7 +486,7 @@ QScrollBar::handle:vertical { /* Scroll Bar Slider - vertical */
 }
 
 QScrollBar::handle:vertical:pressed { /* Scroll Bar Slider - vertical */
-	background:#eea807;
+	background:#f22335;
 	min-height:10px;
 }
 
@@ -503,7 +503,7 @@ QScrollBar::handle:horizontal { /* Scroll Bar Slider - horizontal */
 }
 
 QScrollBar::handle:horizontal:pressed { /* Scroll Bar Slider - horizontal */
-	background:#eea807;
+	background:#f22335;
 	min-width:10px;
 }
 
@@ -571,14 +571,14 @@ QSlider::groove:horizontal {
 }
 
 QSlider::sub-page:horizontal {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #a36e0a, stop: 1 #d19724);
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #a10a17, stop: 1 #cf2332);
 	border: 1px solid #333;
 	height: 10px;
 	border-radius: 4px;
 }
 
 QSlider::add-page:horizontal {
-	background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #eea807, stop: 1 #a36e0a);
+	background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #f22335, stop: 1 #a10a17);
 	border: 1px solid #333;
 	height: 10px;
 	border-radius: 4px;
@@ -595,7 +595,7 @@ QSlider::handle:horizontal {
 }
 
 QSlider::handle:horizontal:hover {
-	background-color: #eea807;
+	background-color: #f22335;
 	border: 2px solid #333;
 	width: 16px;
 	height: 16px;
@@ -636,7 +636,7 @@ QTabWidget QTabBar::tab:last {
 }
 
 QTabWidget QTabBar::tab:selected, QTabWidget QTabBar::tab:hover {
-	background-color:#eea807;
+	background-color:#f22335;
 	color:#fff;
 }
 
@@ -654,7 +654,7 @@ QDialog .QTabWidget {
 }
 
 QDialog .QTabWidget::pane {
-	border: 1px solid #eea807;
+	border: 1px solid #f22335;
 }
 
 QDialog .QTabWidget QTabBar::tab {
@@ -676,7 +676,7 @@ QDialog .QTabWidget QTabBar::tab:last {
 }
 
 QDialog .QTabWidget QTabBar::tab:selected, QDialog .QTabWidget QTabBar::tab:hover {
-	background-color:#eea807;
+	background-color:#f22335;
 	color:#333;
 }
 
@@ -759,7 +759,7 @@ QWidget#AddressBookPage QHeaderView::section { /* Min width for Windows fix */
 /* QDialog#MultisigDialog QPushButton { */
 /* QDialog#MultisigDialog QFrame#addressFrame { */
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton {
-  background-color: #eea807;
+  background-color: #f22335;
 	border: 0;
 	color:#333;
 	font-size:12px;
@@ -791,7 +791,7 @@ background-color: #212121;
 }
 
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton {
-  background-color: #eea807;
+  background-color: #f22335;
 	border: 0;
 	color:#333;
 	font-size:12px;
@@ -823,7 +823,7 @@ background-color: #212121;
 }
 
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton {
-  background-color: #eea807;
+  background-color: #f22335;
 	border: 0;
 	color:#333;
 	font-size:12px;
@@ -929,7 +929,7 @@ QDialog#RPCConsole QWidget#tab_info QLabel#label_11, QDialog#RPCConsole QWidget#
 }
 
 QDialog#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header */
-	color:#eea807;
+	color:#f22335;
 }
 
 QDialog#RPCConsole QTableView#peerWidget::item { /* Peers Table Items */
@@ -957,7 +957,7 @@ QDialog#RPCConsole QPushButton#clearButton { /* Console Clear Button */
 }
 
 QDialog#RPCConsole .QGroupBox #line { /* Network In Line */
-	background-color:#eea807;
+	background-color:#f22335;
 }
 
 QDialog#RPCConsole .QGroupBox #line_2 { /* Network Out Line */
@@ -1098,7 +1098,7 @@ QWidget .QFrame#frameBalances .QLabel#labelBalances { /* BYRON Balances Header L
 }
 
 QWidget .QFrame#frameBalances #lineBalances { /* BYRON Balances Line separator */
-	background-color:#eea807;
+	background-color:#f22335;
 }
 
 
@@ -1107,14 +1107,14 @@ QWidget .QFrame#frameBalances .QLabel#labelAvailable { /* Available Balance */
 	qproperty-alignment: 'AlignVCenter | AlignLeft';
 	font-size: 14px;
 	font-weight: bold;
-	color: #eea807;
+	color: #f22335;
 }
 
 QWidget .QFrame#frameBalances .QLabel#labelLocked { /* Locked Balance */
 	qproperty-alignment: 'AlignVCenter | AlignLeft';
 	font-size: 14px;
 	font-weight: normal;
-	color: #eea807;
+	color: #f22335;
 }
 
 QWidget .QFrame#frameBalances .QLabel#labelWatchTotal { /* Watch-only Total Balance */
@@ -1257,10 +1257,10 @@ QDialog#Bip38ToolDialog .QToolButton,
 QDialog#MultiSendDialog .QToolButton,
 QDialog#SignVerifyMessageDialog .QToolButton,
 QDialog#MultisigDialog .QToolButton {
-	background-color: #eea807;
+	background-color: #f22335;
 	border-width: 1px;
 	border-style: outset;
-	border-color: #624100;
+	border-color: #610109;
 	border-radius: 2px;
 	color:#ffffff;
 	font-size:12px;
@@ -1401,7 +1401,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item {
 }
 
 QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::item:selected { /* Coin Control Item (selected) */
-	background-color:#eea807;
+	background-color:#f22335;
 	color:#fff;
 }
 
@@ -1476,7 +1476,7 @@ QWidget#ReceiveCoinsDialog .QFrame#frame2 QPushButton:pressed {
 }
 
 QWidget#ReceiveCoinsDialog .QFrame#frame .QLabel#label_6 { /* Requested Payments History Label */
-	color:#eea807;
+	color:#f22335;
 	font-weight:bold;
 	font-size:14px;
 }
@@ -1533,7 +1533,7 @@ QCalendarView {
 }
 
 QCalendarWidget QWidget#qt_calendar_navigationbar { /* Calendar widget navigation bar */
-	background-color:#eea807;
+	background-color:#f22335;
 	font-weight:bold;
 }
 

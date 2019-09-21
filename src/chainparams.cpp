@@ -53,7 +53,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0,      uint256("0x"));
+    (0,      uint256("0x0000046a0d44551528c3a82e99ebd00e163efc0668b85ebe34d9d5effc7b05d9"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -140,11 +140,12 @@ public:
          * be spent as it did not originally exist in the database.
          *
          Mined genesis block:
-		 Merkle root: dc4b157308940bdfb435c259b21e5985db996f1075db9148a7564cd861fb8d13
-		 Nonce: 144413
+		 Merkle root: 67a78d8e0934f8b2c9857467584796eba000d3dabcefaa53b9eca08c5dd222ab
+		 Nonce: 200014
 		 Bits: 504365040
-		 Hash: 00000aeb3aaef95a7926947f7a21179c9e8cea80e08cac6a9b9ced5273f5d930
+		 Hash: 0000046a0d44551528c3a82e99ebd00e163efc0668b85ebe34d9d5effc7b05d9
 		 POW: 00000ffff0000000000000000000000000000000000000000000000000000000
+
          */
         const char* pszTimestamp = "The Byron is the best for your money 20/09/2019 for your life";
         CMutableTransaction txNew;
@@ -159,13 +160,13 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1569021030;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 0;
+        genesis.nNonce = 200014;
 		
 		MineGenesis(genesis, bnProofOfWorkLimit);
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256S("0x"));
-        assert(genesis.hashMerkleRoot == uint256S("0x"));
+        assert(hashGenesisBlock == uint256S("0x0000046a0d44551528c3a82e99ebd00e163efc0668b85ebe34d9d5effc7b05d9"));
+        assert(genesis.hashMerkleRoot == uint256S("0x67a78d8e0934f8b2c9857467584796eba000d3dabcefaa53b9eca08c5dd222ab"));
 
         // DNS Seeding
 		//vSeeds.push_back(CDNSSeedData("202.182.114.6", "202.182.114.6"));
