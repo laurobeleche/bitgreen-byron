@@ -88,7 +88,7 @@ QToolBar > QToolButton {
 }
 
 QToolBar > QToolButton:checked {
-	background-color: #ff2f00;
+	background-color: #cf1121;
 	color: #000;
     border-bottom: 3px solid #f22335;
 	font-weight:bold;
@@ -244,11 +244,11 @@ QPushButton{ /* Global Button Style */
 }
 
 QPushButton:hover {
-background-color: #bc860b;
+background-color: #bf0d1d;
 }
 
 QPushButton:pressed{
-background-color: #d9a109;
+background-color: #d6091b;
 	border:1px solid #333333;
 }
 
@@ -658,7 +658,7 @@ QDialog .QTabWidget::pane {
 }
 
 QDialog .QTabWidget QTabBar::tab {
-	background-color:#ffd260;
+	background-color:#ff5e6d;
 	color:#333;
 	padding-left:10px;
 	padding-right:10px;
@@ -776,11 +776,11 @@ QDialog#MultisigDialog  QFrame#addressFrame .QPushButton {
 
 
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton:hover {
-background-color: #bc860b;
+background-color: #bf0d1d;
 }
 
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton:pressed{
-background-color: #d9a109;
+background-color: #d6091b;
 	border:1px solid #333333;
 }
 
@@ -808,11 +808,11 @@ QDialog#MultisigDialog  QFrame#addressFrame .QPushButton {
 
 
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton:hover {
-background-color: #bc860b;
+background-color: #bf0d1d;
 }
 
 QDialog#MultisigDialog  QFrame#addressFrame .QPushButton:pressed{
-background-color: #d9a109;
+background-color: #d6091b;
 	border:1px solid #333333;
 }
 
@@ -840,11 +840,11 @@ QDialog#MultisigDialog  QFrame#addressFrame .QPushButton {
 
 
 QDialog#MultisigDialog  QFrame#txInputFrame .QPushButton:hover {
-background-color: #bc860b;
+background-color: #bf0d1d;
 }
 
 QDialog#MultisigDialog  QFrame#txInputFrame .QPushButton:pressed{
-background-color: #d9a109;
+background-color: #d6091b;
 	border:1px solid #333333;
 }
 
@@ -855,11 +855,11 @@ background-color: #212121;
 }
 
 QDialog#MultisigDialog  QFrame#destinationFrame .QPushButton:hover {
-background-color: #bc860b;
+background-color: #bf0d1d;
 }
 
 QDialog#MultisigDialog  QFrame#destinationFrame .QPushButton:pressed{
-background-color: #d9a109;
+background-color: #d6091b;
 	border:1px solid #333333;
 }
 
@@ -1276,7 +1276,7 @@ QStackedWidget#SendCoinsEntry .QToolButton:hover, /* General Settings for Pay To
 QDialog#Bip38ToolDialog .QToolButton:hover,
 QDialog#MultiSendDialog .QToolButton:hover,
 QDialog#SignVerifyMessageDialog .QToolButton:hover {
-	background-color: #bc860b;
+	background-color: #bf0d1d;
 }
 
 QStackedWidget#SendCoinsEntry .QToolButton:focus,  /* General Settings for Pay To Icons */
