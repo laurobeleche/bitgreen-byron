@@ -1225,7 +1225,7 @@ QDialog#SendCoinsDialog .QCheckBox#checkSwiftTX { /* SwiftTX Checkbox */
 	margin-right:20px;
 }
 
-QDialog#SendCoinsDialog .QCheckBox#checkSwiftTX {
+QDialog#SendCoinsDialog .QLabel#labelSmartFeeFast {
 	color: #f5e6e7;
 }
 

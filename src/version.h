@@ -12,17 +12,17 @@
  * network protocol versioning
  */
 
-static const int PROTOCOL_VERSION = 70931;
+static const int PROTOCOL_VERSION = 71131;
 
 //! initial proto version, to be increased after version/verack negotiation
 static const int INIT_PROTO_VERSION = 209;
 
 //! In this version, 'getheaders' was introduced.
-static const int GETHEADERS_VERSION = 70931;
+static const int GETHEADERS_VERSION = 71131;
 
 //! disconnect from peers older than this proto version
-static const int MIN_PEER_PROTO_VERSION = 70931;
-static const int MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT = 70931;
+static const int MIN_PEER_PROTO_VERSION = 71131;
+static const int MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT = 71131;
 
 //! fork blocks
 static const int SOFT_FORK_VERSION_120 = 260000;
@@ -41,6 +41,6 @@ static const int MEMPOOL_GD_VERSION = 60002;
 static const int NO_BLOOM_VERSION = 70005;
 
 //! Community proposal starts with this version
-static const int COMMUNITY_PROPOSAL_VERSION = 70931;
+static const int COMMUNITY_PROPOSAL_VERSION = 71131;
 
 #endif // BITCOIN_VERSION_H
