@@ -76,7 +76,7 @@ QToolBar {
 }
 
 QToolBar > QToolButton {
-	background-color:#ff0016;
+	background-color:#f22335;
 	border:0px solid #333;
 	selection-background-color:transparent;
 	min-height: 2.5em;
@@ -90,14 +90,14 @@ QToolBar > QToolButton {
 QToolBar > QToolButton:checked {
 	background-color: #ff2f00;
 	color: #000;
-    border-bottom: 3px solid #ff0016;
+    border-bottom: 3px solid #f22335;
 	font-weight:bold;
 }
 
 QToolBar > QToolButton:hover {
-	background-color: #ff0016;
+	background-color: #fa5a68;
 	color: #000;
-	border-bottom: 3px solid #ff0016;
+	border-bottom: 3px solid #f22335;
 }
 
 QMessageBox {
@@ -105,15 +105,15 @@ QMessageBox {
 }
 
 QProgressBar {
-	color: #634200;
-	border: 1px solid #634200;
+	color: #ffa6ae;
+	border: 1px solid #ffa6ae;
 	border-radius: 50px;
 	background-color: transparent;
 	border-style: none;
 }
 
 QProgressBar::chunk {
-	background-color: #ffae00;
+	background-color: #f22335;
 	width: 20px;
 }
 
