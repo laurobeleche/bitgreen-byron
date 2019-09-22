@@ -169,10 +169,12 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x67a78d8e0934f8b2c9857467584796eba000d3dabcefaa53b9eca08c5dd222ab"));
 
         // DNS Seeding
-		//vSeeds.push_back(CDNSSeedData("202.182.114.6", "202.182.114.6"));
-		//vSeeds.push_back(CDNSSeedData("45.77.31.201", "45.77.31.201"));
-		//vSeeds.push_back(CDNSSeedData("202.182.115.47", "202.182.115.47"));
-		//vSeeds.push_back(CDNSSeedData("45.32.8.155", "45.32.8.155"));
+		vSeeds.push_back(CDNSSeedData("157.230.221.112", "157.230.221.112"));
+		vSeeds.push_back(CDNSSeedData("157.245.88.49", "157.245.88.49"));
+		vSeeds.push_back(CDNSSeedData("159.65.20.114", "159.65.20.114"));
+		vSeeds.push_back(CDNSSeedData("104.248.197.3", "104.248.197.3"));
+		vSeeds.push_back(CDNSSeedData("157.245.236.57", "157.245.236.57"));
+		vSeeds.push_back(CDNSSeedData("157.245.222.14", "157.245.222.14"));
 
         // Byron addresses start with 'V'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 26);
@@ -201,7 +203,7 @@ public:
 
         nPoolMaxTransactions = 3;
         strSporkKey = "04c9f19249d48878fbf4515c31a58abfdbdf999d9c7855803996c8f6a68ce93144e5ab3ff00305d2c5e5d4d512a036072b3a546d05aa3923ce12b6ae472299e865";
-        strMasternodePoolDummyAddress = "GSJVWUkt6HtSCY2SaJ2akeyJUg8bg1hW3S";
+        strMasternodePoolDummyAddress = "BmUFwbvYDdBZTzWWN8joE43APiNKsKcu2L";
         nStartMasternodePayments = genesis.nTime + 86400; // 24 hours after genesis creation
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
